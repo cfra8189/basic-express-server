@@ -1,4 +1,5 @@
 const express = require('express');
+const axios = require('axios');
 const path = require('path');
 const app = express();
 const port = 3000;
@@ -12,6 +13,12 @@ app.get('/', (req, res) => {
 app.get('/contact', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'contact.html'));
 });
+
+app.get('/api/fun-fact', (req, res) => {
+
+})
+
+
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`)
