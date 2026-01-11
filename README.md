@@ -60,6 +60,20 @@ The path module is necessary because different operating systems use different p
 
 First, I'd create menu.html in my public folder. Then I'd add a route in server.js using `app.get('/menu', (req, res) => { res.sendFile(path.join(__dirname, 'public', 'menu.html')); });`. Nodemon would auto-restart the server, and I'd visit `http://localhost:3000/menu` to see the page.
 
+## Lab 2 Reflections
+
+**1. Why was it important to re-format the data from the Useless Facts API before sending it to your own client? What are the benefits of an API providing a clean, minimal response?**
+
+Re-formatting the data gives me control over my API's structure. If the external API changes, my client code doesn't break. It also improves security by not exposing unnecessary data, improves performance with smaller payloads, and makes the API simpler for clients since they only get what they need.
+
+**2. In the catch block, why is it better to send a generic error message to the client instead of the actual error object from axios?**
+
+Generic error messages are better for security - detailed errors can expose file paths, API keys, or system vulnerabilities. They also improve user experience since technical stack traces confuse end users. Plus, I stay in control of the error format and don't leak information about my backend architecture.
+
+**3. How might you modify this application to get a fact in a different language if the external API supported it (e.g., with a query parameter like ?language=de)?**
+
+I'd modify the route to accept a query parameter and pass it to the external API. I'd use req.query.language to get the language from the request, default to English if not provided, and add it to the API URL like ?language=${language}. Then clients could call /api/fun-fact?language=de to get a fact in German.
+
 ## Installation & Setup
 
 1. Clone the repository:
