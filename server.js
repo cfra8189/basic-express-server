@@ -20,7 +20,7 @@ app.get('/api/fun-fact', async (req, res) => {
         res.json({ fact: response.data.text });
     } catch (error) {
         console.error('Error fetching fun fact:', error.message);
-        res.status(500).json({ error: 'Failed to fetch fun fact' });
+        res.status(500).json({ error: 'Could not fetch fun fact' });
     }
 })
 
