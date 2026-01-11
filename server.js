@@ -14,8 +14,14 @@ app.get('/contact', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'contact.html'));
 });
 
-app.get('/api/fun-fact', (req, res) => {
-
+app.get('/api/fun-fact', async (req, res) => {
+    try {
+        const response = await axios.get('https://uselessfacts.jsph.pl/api/v2/facts/random');
+        res.json(response.data);
+    } catch (error) {
+        console.error('Error fetching fun fact:', error.message);
+        res.status(500).json({ error: 'Failed to fetch fun fact' });
+    }
 })
 
 
